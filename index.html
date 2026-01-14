@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Primer Mes, Quis</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            min-height: 100vh;
+            font-family: 'EB Garamond', serif;
+            color: #5a3e36;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Fondo de corazones animados */
+        .heart-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .heart-bg span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(219, 112, 147, 0.1);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(219, 112, 147, 0.2);
+            animation: float-heart 15s linear infinite;
+            bottom: -150px;
+        }
+
+        @keyframes float-heart {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Contenedor Principal estilo pergamino antiguo */
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 50px;
+            background: #fffaf0;
+            background-image: 
+                radial-gradient(#f5e6d3 15%, transparent 16%),
+                radial-gradient(#f5e6d3 15%, transparent 16%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            box-shadow: 
+                0 10px 30px rgba(139, 0, 0, 0.15),
+                inset 0 0 50px rgba(255, 245, 230, 0.5);
+            border: 12px solid transparent;
+            border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23d4af37" stroke="%238b0000" stroke-width="3"/></svg>') 30 stretch;
+            border-radius: 5px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Decoración de esquinas */
+        .corner-decoration {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+        }
+
+        .top-left {
+            top: 10px;
+            left: 10px;
+            transform: rotate(0deg);
+        }
+
+        .top-right {
+            top: 10px;
+            right: 10px;
+            transform: rotate(90deg);
+        }
+
+        .bottom-left {
+            bottom: 10px;
+            left: 10px;
+            transform: rotate(270deg);
+        }
+
+        .bottom-right {
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(180deg);
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            color: #8b0000;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(139, 0, 0, 0.2);
+            position: relative;
+            display: inline-block;
+        }
+
+        h1:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #d4af37, transparent);
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #b56576;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        .dragon-icon {
+            width: 120px;
+            margin: 20px 0;
+            filter: sepia(0.5) brightness(1.1);
+            transition: transform 0.5s;
+        }
+
+        .dragon-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .quote-container {
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(255, 250, 240, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            border-left: 5px solid #d4af37;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.8rem;
+            color: #5a3e36;
+            line-height: 1.6;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote:before, .quote:after {
+            content: '"';
+            font-size: 3rem;
+            color: #d4af37;
+            position: absolute;
+            top: -15px;
+        }
+
+        .quote:before {
+            left: -10px;
+        }
+
+        .quote:after {
+            right: -10px;
+        }
+
+        .message {
+            line-height: 1.9;
+            font-size: 1.3rem;
+            text-align: justify;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(255, 253, 250, 0.9);
+            border-radius: 10px;
+            border-top: 2px dashed #d4af37;
+            border-bottom: 2px dashed #d4af37;
+        }
+
+        .highlight {
+            color: #8b0000;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .bookshelf {
+            margin: 40px 0;
+            font-size: 2.5rem;
+            letter-spacing: 15px;
+            color: #b56576;
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #8b0000;
+            border-top: 2px solid #f5e6d3;
+            padding-top: 20px;
+        }
+
+        /* Botón mejorado */
+        .btn {
+            background: linear-gradient(to bottom, #8b0000, #b30000);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-family: 'Dancing Script', cursive;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.4);
+            background: linear-gradient(to bottom, #b30000, #8b0000);
+        }
+
+        .btn:hover:before {
+            left: 100%;
+        }
+
+        .btn:active {
+            transform: translateY(-2px);
+        }
+
+        #sorpresa {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(45deg, #fff0f3, #ffe8e8);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.1);
+            font-size: 1.4rem;
+            color: #8b0000;
+            display: none;
+            animation: fadeIn 1s;
+            border: 2px dashed #d4af37;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ESTILOS MEJORADOS PARA EL OVERLAY - MÁS COMPACTO */
+        .heart-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInOverlay 0.5s;
+            padding: 20px;
+        }
+
+        .heart-message {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+            border: 8px solid #ffb6c1;
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .heart-message h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #8b0000;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .heart-message p {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #5a3e36;
+            line-height: 1.4;
+        }
+
+        .heart-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+            max-height: 150px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .heart-container span {
+            font-size: 2rem;
+            animation: heartbeat 1.2s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .close-btn {
+            background: #8b0000;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            transition: all 0.3s;
+            font-family: 'EB Garamond', serif;
+        }
+
+        .close-btn:hover {
+            background: #b30000;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeInOverlay {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Botón de cerrar en la esquina */
+        .heart-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #8b0000;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .heart-close-btn:hover {
+            background: rgba(139, 0, 0, 0.1);
+            transform: rotate(90deg);
+        }
+
+        /* Scroll personalizado para el contenedor de corazones */
+        .heart-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .heart-container::-webkit-scrollbar-track {
+            background: rgba(255, 182, 193, 0.2);
+            border-radius: 10px;
+        }
+
+        .heart-container::-webkit-scrollbar-thumb {
+            background: #ff8e8e;
+            border-radius: 10px;
+        }
+
+        /* Responsive mejorado */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .quote {
+                font-size: 1.5rem;
+            }
+            
+            .message {
+                font-size: 1.1rem;
+                padding: 20px;
+            }
+            
+            .heart-message {
+                padding: 25px 20px;
+                max-width: 95%;
+            }
+            
+            .heart-message h2 {
+                font-size: 2.2rem;
+            }
+            
+            .heart-message p {
+                font-size: 1.2rem;
+            }
+            
+            .heart-container {
+                max-height: 120px;
+                gap: 8px;
+            }
+            
+            .heart-container span {
+                font-size: 1.8rem;
+            }
+            
+            .bookshelf {
+                font-size: 2rem;
+                letter-spacing: 10px;
+            }
+            
+            .footer {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-height: 700px) {
+            .heart-message {
+                max-height: 75vh;
+                padding: 20px;
+            }
+            
+            .heart-container {
+                max-height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-bg">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Overlay de corazones personalizado - AHORA MÁS COMPACTO -->
+    <div id="heartOverlay" class="heart-overlay">
+        <div class="heart-message">
+            <button class="heart-close-btn" onclick="cerrarSorpresa()">×</button>
+            <h2>¡Feliz primer mes, mi Quis!</h2>
+            <p>Eres la mejor parte de mis días ❤️</p>
+            <div class="heart-container" id="dynamicHearts">
+                <!-- Los corazones se generarán aquí dinámicamente -->
+            </div>
+            <p>Gracias por este mes maravilloso a tu lado.</p>
+            <p>¡Por muchos meses más llenos de amor!</p>
+            <button class="close-btn" onclick="cerrarSorpresa()">Cerrar este mensaje</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Decoración de esquinas -->
+        <div class="corner-decoration top-left">❦</div>
+        <div class="corner-decoration top-right">❦</div>
+        <div class="corner-decoration bottom-left">❦</div>
+        <div class="corner-decoration bottom-right">❦</div>
+        
+        <h1>Para mi Quis</h1>
+        <p class="subtitle">✨ 1 Mes de Aventuras ✨</p>
+
+        <img src="https://image2url.com/r2/default/images/1768422908010-9e632806-21e5-4c93-802f-93af07808f01.jpeg" alt="Dragón" class="dragon-icon">
+        
+        <div class="quote-container">
+            <div class="quote">
+                "Ameri es el lugar al que sueño llevarte un dia"
+            </div>
+        </div>
+
+        <div class="message">
+            Querida <span class="highlight">Quis</span>,<br><br>
+            Hoy cumplimos nuestro primer mes y, aunque parece poco tiempo, se siente como si hubiésemos vivido toda una vida juntos y espero que así sea a futuro. <br><br>
+            Eres la mujer más hermosa que nunca quiero dejar de ver, el misterio que quiero resolver cada día y la paz que encuentro cada segundo a tu lado. Gracias por dejarme ser parte de tu mundo, por los momentos de risas y por ser esa persona especial que hace que todo sea mejor.
+        </div>
+
+        <div class="bookshelf">
+            📚 🐉 ❤️ 📖 💌
+        </div>
+
+        <div class="footer">
+            Te quiero muchísimo,<br>
+            <span style="font-size: 3rem;">Tu Yosef</span>
+        </div>
+
+        <button class="btn" onclick="mostrarSorpresa()">¡Haz clic aquí, Quis!</button>
+        <div id="sorpresa">
+            ¡Eres lo mejor que me ha pasado en este mes! 🥂 ¡Por muchos Meses más!
+        </div>
+    </div>
+
+    <script>
+        // Función para generar corazones en el overlay - ahora menos cantidad
+        function generarCorazones() {
+            const heartContainer = document.getElementById('dynamicHearts');
+            heartContainer.innerHTML = '';
+            
+            // Generar 30 corazones (menos que antes)
+            const heartColors = ['#ff6b6b', '#ff8e8e', '#ffb6c1', '#d63031', '#e84393'];
+            
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('span');
+                heart.innerHTML = '❤️';
+                heart.style.color = heartColors[Math.floor(Math.random() * heartColors.length)];
+                heart.style.animationDelay = `${Math.random() * 2}s`;
+                heart.style.fontSize = `${Math.random() * 10 + 20}px`; // Tamaños más pequeños
+                heart.style.opacity = `${Math.random() * 0.7 + 0.3}`;
+                heartContainer.appendChild(heart);
+            }
+        }
+
+        // Mostrar la sorpresa con corazones
+        function mostrarSorpresa() {
+            const overlay = document.getElementById('heartOverlay');
+            const mensajeSorpresa = document.getElementById('sorpresa');
+            
+            // Generar corazones dinámicamente
+            generarCorazones();
+            
+            // Mostrar overlay personalizado
+            overlay.style.display = 'flex';
+            
+            // También mostrar el mensaje en el contenedor principal
+            mensajeSorpresa.style.display = 'block';
+            
+            // Agregar corazones flotantes adicionales al fondo
+            agregarCorazonesExtra();
+            
+            // Desplazar la página hacia arriba si es necesario
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Cerrar la ventana de corazones
+        function cerrarSorpresa() {
+            document.getElementById('heartOverlay').style.display = 'none';
+        }
+
+        // Cerrar con la tecla Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                cerrarSorpresa();
+            }
+        });
+
+        // Agregar corazones flotantes adicionales al hacer clic
+        function agregarCorazonesExtra() {
+            const heartColors = ['#ff6b6b', '#ff8e8e', '#ffb6c1', '#d63031', '#e84393'];
+            
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '❤️';
+                    heart.style.position = 'fixed';
+                    heart.style.color = heartColors[Math.floor(Math.random() * heartColors.length)];
+                    heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+                    heart.style.left = `${Math.random() * 100}vw`;
+                    heart.style.top = `${Math.random() * 100}vh`;
+                    heart.style.zIndex = '9999';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.animation = `float-heart ${Math.random() * 2 + 1.5}s linear forwards`;
+                    
+                    document.body.appendChild(heart);
+                    
+                    // Eliminar el corazón después de la animación
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.remove();
+                        }
+                    }, 2500);
+                }, i * 80);
+            }
+        }
+
+        // Inicializar el fondo de corazones animados
+        function crearCorazonFondo() {
+            const heartBg = document.querySelector('.heart-bg');
+            const colors = ['#ffb6c1', '#ff8e8e', '#ff6b6b', '#e84393'];
+            
+            for (let i = 0; i < 25; i++) {
+                const heart = document.createElement('span');
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.width = `${Math.random() * 20 + 8}px`;
+                heart.style.height = heart.style.width;
+                heart.style.background = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                
+                heartBg.appendChild(heart);
+            }
+        }
+
+        // Inicializar cuando se carga la página
+        window.onload = function() {
+            crearCorazonFondo();
+        };
+    </script>
+</body>
+</html>
